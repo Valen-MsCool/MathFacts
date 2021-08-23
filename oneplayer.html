@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Math Facts Game</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="game.css">
+</head>
+<body>
+	<button onclick="logout()" class="btn btn-success" style="width: 80px; margin-right: 20px; margin-top:20px ; float: right;">Logout</button>
+
+<h4 id="player1_name"></h4> <span id="player1_score"></span>
+
+
+
+
+<div class="container">
+	<center>
+		<h2 style="color: white;">Math Facts Game</h2>
+		
+		<div id="output" class="col-lg-6"> </div>
+
+	</center>
+</div>
+
+<script>
+    player1_name=localStorage.getItem("player_1");
+    var player1_score = 0;
+document.getElementById("player1_name").innerHTML=player1_name+" : ";
+function send() {
+   
+   var number1 =Math.floor(Math.random() * 13);
+   var number2 = Math.floor(Math.random() * 13);
+   actual_answer = parseInt(number1) * parseInt(number2);
+   actual_answer = parseInt(number1) * parseInt(number2);
+   question_word="<h4 id='word_display'>Q. " + number1 + "*"+number2+"</h4>";
+   
+   input_box="<br> Answer : <input type = 'text' id = 'input_check_box'>";
+   check_button="<br> <br> <button class= 'btn btn-info' onclick='check()'>Check</button>";
+   row = question_word+input_box+check_button;
+   document.getElementById("output").innerHTML=row;
+
+
+   }
+   function check(){
+    console.log("check");
+var getanswer = document.getElementById("input_check_box").value;
+
+
+    if (getanswer == actual_answer){
+        player1_score=player1_score+1;
+
+document.getElementById("player1_score").innerHTML=player1_score;
+
+
+
+document.getElementById("output").innerHTML="";
+send();
+        
+    
+
+
+
+
+
+}else{
+    player1_score=player1_score-1;
+    console.log("wrong");
+
+document.getElementById("player1_score").innerHTML=player1_score;
+
+
+
+document.getElementById("output").innerHTML="";
+send();
+
+
+
+
+}
+
+
+   }
+   send();
+   function logout(){
+
+localStorage.removeItem("player_1");
+
+localStorage.removeItem("player_2");
+window.location="index.html";
+
+}
+</script>
+</body>
+</html>
